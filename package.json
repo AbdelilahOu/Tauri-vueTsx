@@ -12,6 +12,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@tauri-apps/api": "^1.2.0",
     "chart.js": "^4.2.0",
     "pinia": "^2.0.28",
     "vite-svg-loader": "^4.0.0",

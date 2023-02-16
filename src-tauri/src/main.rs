@@ -6,7 +6,6 @@
 use diesel_migrations::{embed_migrations, EmbedMigrations};
 
 
-use reqwest::Url;
 use tauri::App;
 // use schema::todos;
 use std::error::Error;
@@ -47,15 +46,22 @@ fn todos_delete(id: i32, state: tauri::State<AppState>) -> String {
     db::todos_delete(&conn, id);
     String::from("")
 }
-
+struct AppState {
+    conn: Mutex<SqliteConnection>,
+}
 
 fn main() {
-  tauri::Builder::default()
+    let _conn = db::establish_connection();
+    let state = AppState {
+        conn: Mutex::new(db::establish_connection()),
+    };
+
+  tauri::Builder::default().manage(state)
     .invoke_handler(tauri::generate_handler![
-      todos_list,
       todos_create,
       todos_toggle,
-      todos_delete
+      todos_delete,
+      todos_list
     ])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
