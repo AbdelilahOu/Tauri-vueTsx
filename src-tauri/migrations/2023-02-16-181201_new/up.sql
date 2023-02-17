@@ -1,4 +1,3 @@
--- CreateTable
 CREATE TABLE product (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -8,7 +7,7 @@ CREATE TABLE product (
     type TEXT NOT NULL DEFAULT 'product'
 );
 
--- CreateTable
+
 CREATE TABLE client (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -17,7 +16,7 @@ CREATE TABLE client (
     addresse TEXT
 );
 
--- CreateTable
+
 CREATE TABLE seller (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -26,7 +25,7 @@ CREATE TABLE seller (
     addresse TEXT
 );
 
--- CreateTable
+
 CREATE TABLE invoice (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     total REAL NOT NULL,
@@ -35,7 +34,7 @@ CREATE TABLE invoice (
     CONSTRAINT command_sellerId_fkey FOREIGN KEY (sellerId) REFERENCES Seller (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- CreateTable
+
 CREATE TABLE invoiceItem (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     productId INTEGER NOT NULL,
@@ -47,7 +46,7 @@ CREATE TABLE invoiceItem (
     CONSTRAINT invoiceItem_stockId_fkey FOREIGN KEY (stockId) REFERENCES stockMouvement (id) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
--- CreateTable
+
 CREATE TABLE command (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     status TEXT NOT NULL,
@@ -56,7 +55,7 @@ CREATE TABLE command (
     CONSTRAINT invoice_clientId_fkey FOREIGN KEY (clientId) REFERENCES Client (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- CreateTable
+
 CREATE TABLE commandItem (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     productId INTEGER NOT NULL,
@@ -68,7 +67,7 @@ CREATE TABLE commandItem (
     CONSTRAINT commandItem_stockId_fkey FOREIGN KEY (stockId) REFERENCES stockMouvement (id) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
--- CreateTable
+
 CREATE TABLE stockMouvement (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
