@@ -1,26 +1,8 @@
-import messages from "@intlify/unplugin-vue-i18n/messages";
-import { MotionPlugin } from "@vueuse/motion";
-import { createI18n } from "vue-i18n";
 import { createPinia } from "pinia";
-import { createApp } from "vue";
+import { createApp, watch } from "vue";
+import i18n from "./plugins/i18n";
 import router from "./router";
 import App from "./App.vue";
 import "./assets/main.css";
 
-const locale = localStorage.getItem("locale");
-
-createApp(App)
-  .use(createPinia())
-  .use(MotionPlugin)
-  .use(
-    createI18n({
-      legacy: false,
-      globalInjection: false,
-      locale: locale ? JSON.parse(locale).key : "fr",
-      fallbackLocale: "fr",
-      availableLocales: ["en", "fr", "ar", "de"],
-      messages: messages,
-    })
-  )
-  .use(router)
-  .mount("#app");
+createApp(App).use(createPinia()).use(i18n).use(router).mount("#app");

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { IndexView } from "@/views/IndexView";
+import { IndexView } from "@/views/content/IndexView";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
